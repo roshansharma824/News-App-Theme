@@ -1,6 +1,5 @@
 package com.example.newsapptheme.presentation.screens.detail
 
-import com.example.newsapptheme.presentation.component.ProgressIndicator
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
@@ -14,11 +13,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.rounded.AccountCircle
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -43,9 +44,11 @@ import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.newsapptheme.R
 import com.example.newsapptheme.domain.model.Status
-import com.roshan.themebuilder.ui.text.TextDisplayMediumUi
-import com.roshan.themebuilder.ui.text.TextHeadlineSmallUi
+import com.example.newsapptheme.presentation.component.ProgressIndicator
+import com.roshan.themebuilder.ui.text.TextBodyMediumUi
 import com.roshan.themebuilder.ui.text.TextLabelMediumUi
+import com.roshan.themebuilder.ui.text.TextTitleLargeUi
+import com.roshan.themebuilder.ui.text.TextTitleMediumUi
 
 
 @Composable
@@ -131,34 +134,49 @@ fun DetailScreen(
                         )
                         Spacer(modifier = Modifier.height(8.dp))
 
-                        TextDisplayMediumUi(
+                        TextTitleLargeUi(
                             text = title ?: "Title not available",
                             modifier = Modifier.padding(start = 12.dp, end = 12.dp)
                         )
                         Spacer(modifier = Modifier.height(8.dp))
-                        TextLabelMediumUi(
-                            text = "Published: ${publishedAt ?: "N/A"}",
-                            modifier = Modifier.padding(start = 12.dp, end = 12.dp)
-                        )
+                        Row(
+                            modifier = Modifier.padding(start = 16.dp),
+                            verticalAlignment =  Alignment.CenterVertically,
+                        ) {
+                            Icon(
+                                imageVector = Icons.Rounded.AccountCircle,
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .width(35.dp)
+                                    .height(35.dp),
+                                tint = Color.Gray
+                            )
+                            Column {
+                                TextLabelMediumUi(
+                                    text = "Published: ${publishedAt ?: "N/A"}",
+                                    modifier = Modifier.padding(start = 12.dp, end = 12.dp)
+                                )
 
-                        TextLabelMediumUi(
-                            text = "By: ${author ?: "Unknown"}",
-                            modifier = Modifier.padding(start = 12.dp, end = 12.dp)
-                        )
+                                TextLabelMediumUi(
+                                    text = "By: ${author ?: "Unknown"}",
+                                    modifier = Modifier.padding(start = 12.dp, end = 12.dp)
+                                )
+                            }
+                        }
+
                         Spacer(modifier = Modifier.height(8.dp))
                         HorizontalDivider(
                             thickness = 1.dp,
                             color = Color.Gray.copy(alpha = 0.5f)
                         )
                         Spacer(modifier = Modifier.height(8.dp))
-                        TextDisplayMediumUi(
+                        TextTitleMediumUi(
                             text = description ?: "Description not available",
                             modifier = Modifier.padding(start = 12.dp, end = 12.dp)
-
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         content?.forEach { it ->
-                            TextHeadlineSmallUi(
+                            TextBodyMediumUi(
                                 text = it,
                                 modifier = Modifier.padding(start = 12.dp, end = 12.dp)
                             )
@@ -168,6 +186,7 @@ fun DetailScreen(
                     }
                 }
             }
+
             Status.ERROR -> Text(text = "Failed to load news: ${data?.message}")
             Status.LOADING -> ProgressIndicator()
             null -> {}

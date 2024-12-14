@@ -43,6 +43,12 @@ class ThemeViewModel(application: Application) : AndroidViewModel(application = 
     private val _textHeadlineSmallState = MutableStateFlow<ResultState<PlayText>>(ResultState.Loading)
     val textHeadlineSmallState: StateFlow<ResultState<PlayText>> = _textHeadlineSmallState
 
+    private val _textTitleLargeState = MutableStateFlow<ResultState<PlayText>>(ResultState.Loading)
+    val textTitleLargeState: StateFlow<ResultState<PlayText>> = _textTitleLargeState
+
+    private val _textTitleMediumState = MutableStateFlow<ResultState<PlayText>>(ResultState.Loading)
+    val textTitleMediumState: StateFlow<ResultState<PlayText>> = _textTitleMediumState
+
     private val _colorsLightState = MutableStateFlow<ResultState<ColorSchema>>(ResultState.Loading)
     val colorsLightState: StateFlow<ResultState<ColorSchema>> = _colorsLightState
 
@@ -62,6 +68,8 @@ class ThemeViewModel(application: Application) : AndroidViewModel(application = 
         getColorsLight()
         getCardData()
         getTextHeadlineMedium()
+        getTextTitleLarge()
+        getTextTitleMedium()
     }
 
     private fun getCardData() {
@@ -125,6 +133,22 @@ class ThemeViewModel(application: Application) : AndroidViewModel(application = 
         viewModelScope.launch {
             dataSource.getTextHeadlineSmall().collect {
                 _textHeadlineSmallState.value = it
+            }
+        }
+    }
+
+    private fun getTextTitleLarge() {
+        viewModelScope.launch {
+            dataSource.getTextTitleLarge().collect {
+                _textTitleLargeState.value = it
+            }
+        }
+    }
+
+    private fun getTextTitleMedium() {
+        viewModelScope.launch {
+            dataSource.getTextTitleMedium().collect {
+                _textTitleMediumState.value = it
             }
         }
     }
