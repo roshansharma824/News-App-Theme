@@ -1,24 +1,18 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.gms.google-services")
-    kotlin("kapt")
-    id("com.google.dagger.hilt.android")
-    id ("com.google.devtools.ksp")
 }
 
 android {
-    namespace = "com.example.newsapptheme"
-    compileSdk = 35
+    namespace = "com.roshan.themebuilder"
+    compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.newsapptheme"
         minSdk = 24
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -66,7 +60,8 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.firebase.auth.ktx)
-    implementation(project(":ThemeBuilder"))
+    implementation(libs.firebase.database.ktx)
+    implementation(libs.androidx.ui.text.google.fonts)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -78,29 +73,14 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.2.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-firestore")
+    implementation (libs.play.services.base)
 
-    // hilt
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
-    implementation (libs.androidx.hilt.navigation.compose)
     // Testing
     androidTestImplementation (libs.androidx.navigation.testing)
 
-    //Room
-    implementation(libs.androidx.room.runtime)
-    annotationProcessor(libs.androidx.room.compiler)
-    // To use Kotlin annotation processing tool (kapt)
-    ksp(libs.androidx.room.compiler)
-    // To use Kotlin Symbol Processing (KSP)
-    ksp(libs.androidx.room.compiler)
-    // optional - Kotlin Extensions and Coroutines support for Room
-    implementation(libs.androidx.room.ktx)
+
 
     implementation(libs.coil.compose)
-    implementation (libs.play.services.base)
+
     implementation (libs.gson)
-}
-// Allow references to generated code
-kapt {
-    correctErrorTypes = true
 }

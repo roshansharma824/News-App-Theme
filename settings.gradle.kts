@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "News App Theme"
 include(":app")
- 
+include(":ThemeBuilder")
