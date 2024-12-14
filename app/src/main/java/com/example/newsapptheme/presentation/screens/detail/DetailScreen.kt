@@ -83,8 +83,8 @@ fun DetailScreen(
         topBar = {
             Surface(
                 shadowElevation = 9.dp,
-
-                ) {
+                color = Color.White
+            ) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -96,7 +96,7 @@ fun DetailScreen(
                     IconButton(onClick = {
                         navController.popBackStack()
                     }) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = Color.Black)
                     }
                     Spacer(modifier = Modifier.width(8.dp))
                     Column(
@@ -141,7 +141,7 @@ fun DetailScreen(
                         Spacer(modifier = Modifier.height(8.dp))
                         Row(
                             modifier = Modifier.padding(start = 16.dp),
-                            verticalAlignment =  Alignment.CenterVertically,
+                            verticalAlignment = Alignment.CenterVertically,
                         ) {
                             Icon(
                                 imageVector = Icons.Rounded.AccountCircle,
