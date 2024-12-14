@@ -55,7 +55,7 @@ fun SavedScreen(
     val data = savedScreenViewModel.newsState.collectAsStateWithLifecycle()
 
     val tabs = listOf(
-        "HOME","ENTERTAINMENT","LIFESTYLE","INDIA","SPORTS","HEALTH","BUSINESS","AUTO","VIRAL","GADGETS", "CITY"
+        "HOME","ENTERTAINMENT","LIFESTYLE","INDIA","SPORTS","HEALTH","BUSINESS","AUTO","VIRAL","TECHNOLOGY", "CITY"
     )
     var selectedTabIndex by remember { mutableIntStateOf(0) }
 
