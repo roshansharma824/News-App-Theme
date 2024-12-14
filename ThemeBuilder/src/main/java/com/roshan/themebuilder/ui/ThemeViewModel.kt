@@ -5,8 +5,11 @@ import com.roshan.themebuilder.data.DataSource
 import com.roshan.themebuilder.data.PlayText
 import com.roshan.themebuilder.data.ResultState
 import android.app.Application
+import android.content.Context
+import androidx.compose.runtime.currentCompositionLocalContext
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.roshan.themebuilder.R
 import com.roshan.themebuilder.data.PlayCard
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,10 +19,12 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import java.io.File
 
 
 class ThemeViewModel(application: Application) : AndroidViewModel(application = application) {
 
+    private val appContext: Context = getApplication()
     private val dataSource = DataSource()
 
     // Initialize _newsState as a MutableStateFlow with a default Resource.Loading state
@@ -42,8 +47,12 @@ class ThemeViewModel(application: Application) : AndroidViewModel(application = 
     private val _cardState = MutableStateFlow<ResultState<PlayCard>>(ResultState.Loading)
     val cardState: StateFlow<ResultState<PlayCard>> = _cardState
 
+    private val _postJsonState = MutableStateFlow<ResultState<String>>(ResultState.Loading)
+    val postJsonState: StateFlow<ResultState<String>> = _postJsonState
+
     init {
         println("ThemeViewModel init called")
+        postThemeJson()
         getTextDisplayMedium()
         getTextHeadlineSmall()
         getTextBodyMedium()
@@ -56,6 +65,24 @@ class ThemeViewModel(application: Application) : AndroidViewModel(application = 
         viewModelScope.launch {
             dataSource.getCardData().collect {
                 _cardState.value = it
+            }
+        }
+    }
+
+    private fun postThemeJson() {
+        viewModelScope.launch {
+            // Step 1: Load the JSON string from raw resources
+            val jsonString = try {
+                val inputStream = appContext.resources.openRawResource(R.raw.theme) // Replace `appContext` with your context provider
+                inputStream.bufferedReader().use { it.readText() }
+            } catch (e: Exception) {
+                _postJsonState.value = ResultState.Failure(e)
+                return@launch
+            }
+
+            // Step 2: Post the JSON to Firebase
+            dataSource.postThemeJson(jsonString).collect {
+                _postJsonState.value = it
             }
         }
     }

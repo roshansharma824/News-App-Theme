@@ -98,6 +98,7 @@ dependencies {
 
     implementation(libs.coil.compose)
     implementation (libs.play.services.base)
+    implementation (libs.gson)
 }
 // Allow references to generated code
 kapt {

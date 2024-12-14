@@ -82,7 +82,7 @@ fun SavedScreen(
 
                         }) {
                             Image(
-                                painter = painterResource(id = R.drawable.ic_launcher_background),
+                                painter = painterResource(id = R.drawable.conscent_logo),
                                 contentDescription = "logo"
                             )
                         }
