@@ -34,6 +34,8 @@ class ThemeViewModel(application: Application) : AndroidViewModel(application = 
 
     private val _textBodyMediumState = MutableStateFlow<ResultState<PlayText>>(ResultState.Loading)
     val textBodyMediumState: StateFlow<ResultState<PlayText>> = _textBodyMediumState
+    private val _textHeadlineMediumState = MutableStateFlow<ResultState<PlayText>>(ResultState.Loading)
+    val textHeadlineMediumState: StateFlow<ResultState<PlayText>> = _textHeadlineMediumState
 
     private val _textLabelMediumState = MutableStateFlow<ResultState<PlayText>>(ResultState.Loading)
     val textLabelMediumState: StateFlow<ResultState<PlayText>> = _textLabelMediumState
@@ -59,6 +61,7 @@ class ThemeViewModel(application: Application) : AndroidViewModel(application = 
         getTextLabelMedium()
         getColorsLight()
         getCardData()
+        getTextHeadlineMedium()
     }
 
     private fun getCardData() {
@@ -99,6 +102,13 @@ class ThemeViewModel(application: Application) : AndroidViewModel(application = 
         viewModelScope.launch {
             dataSource.getTextBodyMedium().collect {
                 _textBodyMediumState.value = it
+            }
+        }
+    }
+    private fun getTextHeadlineMedium() {
+        viewModelScope.launch {
+            dataSource.getTextHeadlineMedium().collect {
+                _textHeadlineMediumState.value = it
             }
         }
     }

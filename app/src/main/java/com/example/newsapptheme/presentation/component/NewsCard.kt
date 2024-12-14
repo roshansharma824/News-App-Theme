@@ -26,6 +26,8 @@ import com.example.newsapptheme.domain.model.News
 import com.roshan.themebuilder.ui.CardUi
 import com.roshan.themebuilder.ui.text.TextBodyMediumUi
 import com.roshan.themebuilder.ui.text.TextDisplayMediumUi
+import com.roshan.themebuilder.ui.text.TextHeadlineMediumUi
+import com.roshan.themebuilder.ui.text.TextHeadlineSmallUi
 import com.roshan.themebuilder.ui.text.TextLabelMediumUi
 
 
@@ -73,11 +75,11 @@ fun NewsCard(item: News, index: Int, onItemClicked: (Int) -> Unit) {
                     .fillMaxWidth()
                     .padding(16.dp)
             ) {
-                TextDisplayMediumUi(
+                TextHeadlineMediumUi(
                     modifier = Modifier,
                     text = "${item.title}",
                 )
-                TextBodyMediumUi(
+                TextHeadlineSmallUi(
                     modifier = Modifier,
                     text = "${item.description}",
                 )

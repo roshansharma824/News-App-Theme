@@ -60,14 +60,35 @@ class DataSource {
                 }
                 Log.i(TAG, "getItem ${items.value}")
             }
-
             override fun onCancelled(error: DatabaseError) {
                 trySend(ResultState.Failure(error.toException()))
             }
         }
-
         realtimeDb.addValueEventListener(valueEvent)
+        awaitClose {
+            realtimeDb.removeEventListener(valueEvent)
+            close()
+        }
+    }
 
+    fun getTextHeadlineMedium(): Flow<ResultState<PlayText>> = callbackFlow {
+        trySend(ResultState.Loading)
+        val valueEvent = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val items = snapshot.child("ThemeBuilder/Text/headlineMedium")
+                val playText = items.getValue(PlayText::class.java)
+                if (playText != null) {
+                    trySend(ResultState.Success(playText))
+                } else {
+                    trySend(ResultState.Failure(NullPointerException("PlayText is null")))
+                }
+                Log.i(TAG, "getTextHeadlineMedium ${items.value}")
+            }
+            override fun onCancelled(error: DatabaseError) {
+                trySend(ResultState.Failure(error.toException()))
+            }
+        }
+        realtimeDb.addValueEventListener(valueEvent)
         awaitClose {
             realtimeDb.removeEventListener(valueEvent)
             close()
