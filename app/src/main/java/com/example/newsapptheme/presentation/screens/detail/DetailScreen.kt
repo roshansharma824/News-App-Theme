@@ -128,7 +128,7 @@ fun DetailScreen(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(56.dp),
+                        .height(50.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     IconButton(onClick = { navController.popBackStack() }) {
@@ -138,7 +138,7 @@ fun DetailScreen(
                             tint = Color.Black
                         )
                     }
-                    Spacer(modifier = Modifier.width(8.dp))
+                    Spacer(modifier = Modifier.width(0.dp))
                     Text(
                         text = "Detail Screen",
                         color = Color.Black,
