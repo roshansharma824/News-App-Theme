@@ -21,10 +21,9 @@ playServicesMaps = "18.2.0"
 roomRuntime = "2.6.0"
 hiltAndroid = "2.48"
 hiltNavigationCompose = "1.2.0"
-firebaseAuthKtx = "23.0.0"
 appcompat = "1.7.0"
 materialVersion = "1.12.0"
-firebaseDatabaseKtx = "21.0.0"
+
 uiTextGoogleFonts = "1.7.2"
 
 
@@ -55,10 +54,8 @@ hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", ve
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 androidx-material = { module = "androidx.compose.material:material", version.ref = "material" }
 androidx-navigation-testing = { module = "androidx.navigation:navigation-testing", version.ref = "navigationTesting" }
-firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "materialVersion" }
-firebase-database-ktx = { group = "com.google.firebase", name = "firebase-database-ktx", version.ref = "firebaseDatabaseKtx" }
 play-services-base = { module = "com.google.android.gms:play-services-base", version.ref = "playServicesBase" }
 androidx-ui-text-google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts", version.ref = "uiTextGoogleFonts" }
 

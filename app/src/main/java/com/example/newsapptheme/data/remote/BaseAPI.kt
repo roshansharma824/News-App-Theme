@@ -2,7 +2,6 @@ package com.example.newsapptheme.data.remote
 
 import android.net.Uri
 import android.util.Log
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
@@ -269,6 +268,6 @@ open class BaseAPI {
 //        }
     }
 
-    protected fun getPathString(folderName: String, imageUri: Uri) =
-        "${folderName}/${FirebaseAuth.getInstance().uid}/${imageUri.lastPathSegment}"
+//    protected fun getPathString(folderName: String, imageUri: Uri) =
+//        "${folderName}/${FirebaseAuth.getInstance().uid}/${imageUri.lastPathSegment}"
 }
