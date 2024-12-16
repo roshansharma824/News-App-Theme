@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.gms.google-services")
+    id("signing")
+    id("com.vanniktech.maven.publish") version "0.30.0"
 }
 
 android {
@@ -82,4 +84,46 @@ dependencies {
     implementation(libs.coil.compose)
 
     implementation (libs.gson)
+}
+
+mavenPublishing {
+    coordinates("io.github.roshansharma824", "themebuilder", "1.0.1")
+
+    pom {
+        name.set("Theme Builder")
+        description.set("A description of what my library does.")
+        inceptionYear.set("2024")
+        url.set("https://github.com/roshansharma824/News-App-Theme/")
+        licenses {
+            license {
+                name.set("The Apache License, Version 2.0")
+                url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                distribution.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+            }
+        }
+        developers {
+            developer {
+                id.set("roshansharma824")
+                name.set("Roshan Sharma")
+                url.set("https://github.com/roshansharma824/")
+            }
+        }
+        scm {
+            url.set("https://github.com/roshansharma824/News-App-Theme/")
+            connection.set("scm:git:git://github.com/roshansharma824/News-App-Theme.git")
+            developerConnection.set("scm:git:ssh://git@github.com/roshansharma824/News-App-Theme.git")
+        }
+    }
+
+    println((findProperty("signing.secretKeyRingFile") as String))
+
+    signing {
+
+        useInMemoryPgpKeys(
+            findProperty("signing.keyId") as String?,
+            findProperty("signing.secretKeyRingFile") as String?,
+            findProperty("signing.password") as String?)
+        useGpgCmd()
+        sign(publishing.publications)
+    }
 }
