@@ -87,11 +87,11 @@ dependencies {
 }
 
 mavenPublishing {
-    coordinates("io.github.roshansharma824", "themebuilder", "1.0.1")
+    coordinates("io.github.roshansharma824", "themebuilder", "1.0.2")
 
     pom {
         name.set("Theme Builder")
-        description.set("A description of what my library does.")
+        description.set("The Theme Builder library for Android’s Jetpack Compose empowers developers to create visually stunning and highly customizable applications with ease. Designed for simplicity and flexibility, this library offers a wide range of pre-built, customizable components that seamlessly integrate with your Compose UI, saving you time and effort.")
         inceptionYear.set("2024")
         url.set("https://github.com/roshansharma824/News-App-Theme/")
         licenses {
