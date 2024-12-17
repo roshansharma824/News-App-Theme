@@ -64,6 +64,34 @@ class ConsCentNewsApp : Application() {
 }
 ```
 
+### 2. **MainActivity Implementation ThemeViewModel**
+Initialize `themeViewModel` in MainActivity:
+- **ThemeBuilder :** ThemeBuilder uses Material3 Theme 
+```kotlin 
+class MainActivity : ComponentActivity() {
+    // Get a reference to the singleton ViewModel from the Application instance
+    private val themeViewModel by lazy { (application as ConsCentNewsApp).themeViewModel }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            CompositionLocalProvider(LocalAppViewModel provides themeViewModel){
+                ThemeBuilder(themeViewModel = themeViewModel) {
+                    // A surface container using the 'background' color from the theme
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colorScheme.background
+                    ) {
+                        RootNavigationGraph(navController = rememberNavController())
+                    }
+                }
+            }
+
+        }
+    }
+}
+```
+
 
 
 
