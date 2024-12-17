@@ -20,15 +20,14 @@
 
 ## 📦 Installation
 
-Add the following dependency to your `build.gradle` file:
-- For Kotlin DSL:
+Add the dependency below to your module's `build.gradle` file:
 ```gradle
 dependencies {
     implementation("io.github.roshansharma824:themebuilder:1.0.2")
 }
 ```
 
-## ✨ Usage
+## ✨ Setup
 
 #### 1. Setting Up ThemeBuilder
 
@@ -92,6 +91,18 @@ class MainActivity : ComponentActivity() {
 }
 ```
 
+#### CardUi
+You can use CardUi as `Jetpack Compose Card` composable function as the following example below:
+```kotlin
+ CardUi(
+        modifier = Modifier,
+        onClick = {
+            onItemClicked.invoke(index)
+        }
+) {
+    // You can execute your own composable functions here
+}
+```
 
 
 
