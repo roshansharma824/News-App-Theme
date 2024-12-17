@@ -51,7 +51,7 @@ fun NewsCard(item: News, index: Int, onItemClicked: (Int) -> Unit) {
             .fillMaxWidth()
             .wrapContentHeight(),
         onClick = {
-//            openUrl(item.url)
+
             onItemClicked.invoke(index)
         }
     ) {
