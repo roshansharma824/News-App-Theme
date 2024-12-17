@@ -104,6 +104,13 @@ You can use CardUi as `Jetpack Compose Card` composable function as the followin
 }
 ```
 
+# Preview App
+| Card UI  | 
+| ------------- |
+| <img src="assets/card_ui_video.mp4" height=500 width=250/>  | 
+
+
+
 
 
 
