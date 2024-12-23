@@ -162,7 +162,7 @@ val unspecified_scheme = ColorFamily(
     Color.Unspecified, Color.Unspecified, Color.Unspecified, Color.Unspecified
 )
 // Define a CompositionLocal to hold MyViewModel
-val LocalAppViewModel = compositionLocalOf<ThemeViewModel> { error("AppViewModel not provided") }
+val LocalAppViewModel = compositionLocalOf<ThemeViewModel> { error("ThemeViewModel not provided") }
 @Composable
 fun ThemeBuilder(
     themeViewModel: ThemeViewModel,
