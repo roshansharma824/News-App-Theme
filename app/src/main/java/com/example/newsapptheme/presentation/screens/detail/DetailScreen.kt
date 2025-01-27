@@ -123,7 +123,7 @@ fun DetailScreen(
                     .graphicsLayer { translationY = appBarOffset }
                     .fillMaxWidth(),
 
-                color = Color.White
+                color = MaterialTheme.colorScheme.onSecondaryContainer
             ) {
                 Row(
                     modifier = Modifier
@@ -133,7 +133,7 @@ fun DetailScreen(
                 ) {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
-                            imageVector = Icons.Default.ArrowBack,
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Back",
                             tint = Color.Black
                         )
